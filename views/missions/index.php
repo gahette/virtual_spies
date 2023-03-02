@@ -1,5 +1,6 @@
-<?php require VIEW_PATH . '/layouts/header.php'; ?>
+<?php
+$title = 'Missions'
+
+?>
 
 <h1>Mes missions</h1>
-
-<?php require VIEW_PATH . '/layouts/footer.php'; ?>

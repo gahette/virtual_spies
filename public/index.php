@@ -1,22 +1,21 @@
 <?php
+
+use App\Router;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
+
 // Chargement du fichier d'autoloading de composer
-require '../vendor/autoload.php';
+require_once  __DIR__ . '/../vendor/autoload.php';
 
-// Démarrage du router
-$router = new AltoRouter();
+// debugger whoops a commenter pour la mise en production
+$whoops = new Run;
+$whoops->pushHandler(new PrettyPageHandler);
+$whoops->register();
+
+$router = new Router(dirname(__DIR__) . '/views'); // Router qui contient le chemin vers les vue
 
 
-// Constante qui contient le chemin vers les vue
-define('VIEW_PATH', dirname(__DIR__) . '/views');
-
-// Gestion des URL
-$router->map('GET', '/missions', function (){
-    require VIEW_PATH . '/missions/index.php';
-});
-$router->map('GET', '/missions/countries', function (){
-    require VIEW_PATH . '/countries/show.php';
-});
-
-// Demande au router si URL correspond au routes
-$match = $router->match();
-$match['target']();
+$router
+    ->get('/virtual_spies', 'missions/index', 'missions')
+    ->get('/virtual_spies/countries', 'countries/show', 'countries')
+    ->run();

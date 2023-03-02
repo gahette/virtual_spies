@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="second commit">
-      <change afterPath="$PROJECT_DIR$/bdd.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/countries/show.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/layouts/footer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/layouts/header.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/missions/index.php" afterDir="false" />
+    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="add routing system, mission and countries views and layouts, start bdd.sql">
+      <change afterPath="$PROJECT_DIR$/commands/fill.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/layouts/default.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/countries/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/countries/show.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layouts/footer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layouts/header.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/missions/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/missions/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +49,11 @@
     <include_path>
       <path value="$PROJECT_DIR$/vendor/altorouter/altorouter" />
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/filp/whoops" />
     </include_path>
   </component>
   <component name="ProjectId" id="2MPpowzEx8qXUI7hiID5oDB5zJb" />
@@ -79,6 +86,16 @@
     ]
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Router.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/virtual_spies/src/Router.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.Router.php" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -93,7 +110,7 @@
       <workItem from="1677679352980" duration="257000" />
       <workItem from="1677679673739" duration="316000" />
       <workItem from="1677680003299" duration="1112000" />
-      <workItem from="1677681408318" duration="7621000" />
+      <workItem from="1677681408318" duration="15839000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1677679776074</created>
@@ -109,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677679840907</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add routing system, mission and countries views and layouts, start bdd.sql">
+      <created>1677693124025</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677693124025</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +141,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="second commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="second commit" />
+    <MESSAGE value="add routing system, mission and countries views and layouts, start bdd.sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="add routing system, mission and countries views and layouts, start bdd.sql" />
   </component>
 </project>
