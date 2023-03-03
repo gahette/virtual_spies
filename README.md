@@ -20,6 +20,9 @@ composer require altorouter/altorouter
     }
 }
 ```
+
+#### Pour le débugage en mode dev
+
 * Rechargement de l'autoloader de composer et prise en compte des nouvelles configurations au fur et à mesure que l'on en ajoute avec la commande :
 ```bash
 composer dump-autoload
@@ -32,10 +35,14 @@ composer require symfony/var-dumper
 ```bash
 composer require filp/whoops 
 ```
+#### Pour le mettre en place des fichier .env
+
 * Mise en place de fichier .env et .env.local avec la commande :
 ```bash
 composer require vlucas/phpdotenv 
 ```
+
+#### Faker pour remplir la bdd
 * Installation de Faker pour générer de fausse donnée dans la base de donnée avec la commande :
 ```bash
 composer require fakerphp/faker 

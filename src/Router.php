@@ -28,10 +28,16 @@ class Router
         return $this;
     }
 
+    public function url(string $name, array $params = []): string
+    {
+        return $this->router->generate($name, $params);
+    }
+
     public function run(): self
     {
         $match = $this->router->match(); // Renvoie tableau associatif contenant les correspondances
         $view = $match['target']; // Récupère les view
+        $router = $this;
         ob_start(); // Démarre la buffer
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         $content = ob_get_clean(); // Récupération du contenu
