@@ -5,7 +5,8 @@ use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 
 // Chargement du fichier d'autoloading de composer
-require_once  __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ .'/../vendor/autoload.php';
+require '../connect.php';
 
 // debugger whoops a commenter pour la mise en production
 $whoops = new Run;

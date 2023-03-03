@@ -1,12 +1,22 @@
 {
+  "scripts": {
+  "start": "php -S localhost:8000 -t public"
+},
+  "config": {
+    "process-timeout": 0
+  },
   "autoload": {
     "psr-4": {
+      "Database\\": "database/",
       "App\\": "src/"
     }
   },
   "require": {
     "altorouter/altorouter": "^2.0",
     "symfony/var-dumper": "^5.4",
-    "filp/whoops": "^2.14"
+    "filp/whoops": "^2.14",
+    "ext-pdo": "*",
+    "vlucas/phpdotenv": "^5.5",
+    "fakerphp/faker": "^1.21"
   }
 }

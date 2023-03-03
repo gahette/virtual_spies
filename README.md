@@ -20,7 +20,7 @@ composer require altorouter/altorouter
     }
 }
 ```
-* Rechargement de l'autoloader de composer et prise en compte des nouvelles configurations avec la commande :
+* Rechargement de l'autoloader de composer et prise en compte des nouvelles configurations au fur et à mesure que l'on en ajoute avec la commande :
 ```bash
 composer dump-autoload
 ```
@@ -31,4 +31,12 @@ composer require symfony/var-dumper
 * Installation de l'outil whoops pour permettre de debugger plus "facilement" avec la commande :
 ```bash
 composer require filp/whoops 
+```
+* Mise en place de fichier .env et .env.local avec la commande :
+```bash
+composer require vlucas/phpdotenv 
+```
+* Installation de Faker pour générer de fausse donnée dans la base de donnée avec la commande :
+```bash
+composer require fakerphp/faker 
 ```
