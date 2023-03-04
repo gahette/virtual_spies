@@ -5,7 +5,7 @@
         <p class="text-muted"><?= $mission->getCreatedAT()->format('d F Y') ?></p>
         <p><?= $mission->getExcerpt() ?></p>
         <p>
-            <a href="<?= $router->url('mission', ['id' => $mission->getId(), 'slug'=>$mission->getSlug()]) ?>" class="btn btn-dark">Voir plus</a>
+            <a href="<?= $this->url('mission', ['id' => $mission->getId(), 'slug'=>$mission->getSlug()]) ?>" class="btn btn-dark">Voir plus</a>
         </p>
     </div>
 </div>

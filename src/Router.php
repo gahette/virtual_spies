@@ -6,14 +6,7 @@ use AltoRouter;
 
 class Router
 {
-    /**
-     * @var string
-     */
     private string $viewPath;
-
-    /**
-     * @var AltoRouter
-     */
     private AltoRouter $router;
 
     public function __construct(string $viewPath)
@@ -37,6 +30,7 @@ class Router
     {
         $match = $this->router->match(); // Renvoie tableau associatif contenant les correspondances
         $view = $match['target']; // Récupère les view
+        $params = $match['params'];
         $router = $this;
         ob_start(); // Démarre la buffer
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';

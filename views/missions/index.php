@@ -47,13 +47,13 @@ $missions = $query->fetchAll(PDO::FETCH_CLASS, Mission::class);
     <?php if ($currentPage > 1): ?>
         <!--    Suppression du numéro de page dans l'url pour la page 1-->
         <?php
-        $link = $router->url('home');
+        $link = $this->url('home');
         if ($currentPage > 2) $link .= '?page=' . ($currentPage - 1);
         ?>
         <a href="<?= $link ?>" class="btn btn-info">&laquo; Page précédente</a>
     <?php endif; ?>
     <?php if ($currentPage < $pages): ?>
-        <a href="<?= $router->url('home') ?>?page=<?= $currentPage + 1 ?>" class="btn btn-info ms-auto">Page suivante
+        <a href="<?= $this->url('home') ?>?page=<?= $currentPage + 1 ?>" class="btn btn-info ms-auto">Page suivante
             &raquo;</a>
     <?php endif; ?>
 </div>

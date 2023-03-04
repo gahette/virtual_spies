@@ -4,6 +4,7 @@ namespace App\Model;
 
 use DateTime;
 use App\Helpers\Text;
+use Exception;
 
 class Mission
 {
@@ -15,10 +16,10 @@ class Mission
     private $created_at;
     private $closed_at;
 
-    private $countries = [];
+    private array $countries = [];
 
     /**
-     * @return int
+     * @return ?int
      */
     public function getId(): ?int
     {
@@ -59,6 +60,7 @@ class Mission
 
     /**
      * @return DateTime
+     * @throws Exception
      */
     public function getCreatedAt(): DateTime
     {
@@ -67,6 +69,7 @@ class Mission
 
     /**
      * @return DateTime
+     * @throws Exception
      */
     public function getClosedAt(): DateTime
     {
@@ -75,10 +78,7 @@ class Mission
 
     public function getExcerpt(): ?string
     {
-        if ($this->content === null) {
-            return null;
-        }
-        return nl2br(htmlentities(Text::excerpt($this->content, 60)));
+        return nl2br(htmlentities(Text::excerpt($this->content)));
     }
 
     /**

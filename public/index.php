@@ -13,6 +13,7 @@ $whoops = new Run;
 $whoops->pushHandler(new PrettyPageHandler);
 $whoops->register();
 
+require '../src/helpers.php';
 
 // Numéro de page
 if (isset($_GET['page']) && $_GET['page'] === 1) {
@@ -38,6 +39,6 @@ $router = new Router(dirname(__DIR__) . '/views'); // Router qui contient le che
 
 $router
     ->get('/', 'missions/index', 'home')
-    ->get('mission/[*:slug]-[i:id]', 'mission/show', 'mission')
-    ->get('/countries', 'countries/show', 'countries')
+    ->get('/mission/[*:slug]-[i:id]', 'missions/show', 'mission')
+    ->get('/country/[*:slug]-[i:id]', 'countries/show', 'country')
     ->run();

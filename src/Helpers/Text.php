@@ -5,7 +5,7 @@ namespace App\Helpers;
 class Text
 {
 
-    public static function excerpt(string $content, int $limit = 60)
+    public static function excerpt(string $content, int $limit = 60): string
     {
 //        on vérifie si le contenu n'est pas inférieur à la limite
         if (mb_strlen($content) <= $limit) {
