@@ -1,24 +1,16 @@
 <?php
 $title = 'Missions';
 
-use App\PaginatedQuery;
+use App\Controllers\MissionController;
 use Database\DBConnection;
-use App\Model\Mission;
 
 $pdo = (new DBConnection)->getPDO();
 
-$paginatedQuery = new PaginatedQuery(
-"SELECT * 
-FROM missions 
-ORDER BY created_at DESC",
-    "SELECT COUNT(id) 
-FROM missions"
-);
+$missionController = new MissionController($pdo);
+[$missions, $pagination] = $missionController->findPaginated();
 
-$missions = $paginatedQuery->getItems(Mission::class);
 $link = $this->url('home');
 ?>
-
 <h1>Mes missions</h1>
 
 <div class="row">
@@ -30,7 +22,7 @@ $link = $this->url('home');
 </div>
 
 <div class="d-flex justify-content-between my-4">
-    <?= $paginatedQuery->previousLink($link) ?>
-    <?= $paginatedQuery->nextLink($link) ?>
+    <?= $pagination->previousLink($link) ?>
+    <?= $pagination->nextLink($link) ?>
 
 </div>

@@ -82,12 +82,17 @@ class Mission
     }
 
     /**
-     * @return array
+     * @return Country[]
      */
     public function getCountries(): array
     {
         return $this->countries;
     }
 
+    public function addCountry(Country $country): void
+    {
+        $this->countries[] = $country;
+        $country->setMission($this);
+    }
 
 }

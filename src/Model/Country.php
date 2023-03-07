@@ -10,6 +10,10 @@ class Country
     private $nationalities;
     private $iso3166;
 
+    private $mission_id;
+
+    private $mission;
+
     /**
      * @return mixed
      */
@@ -50,6 +54,13 @@ class Country
         return $this->iso3166;
     }
 
+    public function getMissionId(): ?int
+    {
+        return $this->mission_id;
+    }
 
-
+    public function setMission(Mission $mission)
+    {
+        $this->mission = $mission;
+    }
 }

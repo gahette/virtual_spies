@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="add relations between countries and missions">
-      <change afterPath="$PROJECT_DIR$/src/PaginatedQuery.php" afterDir="false" />
+    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="refactoring pagination">
+      <change afterPath="$PROJECT_DIR$/src/Controllers/Controller.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controllers/CountryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controllers/Exception/NotFoundException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controllers/MissionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Country.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Country.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Mission.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PaginatedQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaginatedQuery.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/countries/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/countries/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/missions/card.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/missions/card.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/missions/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/missions/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/missions/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/missions/show.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,29 +73,29 @@
     <option name="showLibraryContents" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/jbm/Sites/virtual_spies",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.webide.settings.project.settings.php",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jbm/Sites/virtual_spies&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Router.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/virtual_spies/src/Router.php" useBuiltInWebServerPort="true">
       <method v="2" />
@@ -120,7 +127,8 @@
       <workItem from="1677851009266" duration="3286000" />
       <workItem from="1677854327037" duration="390000" />
       <workItem from="1677854751701" duration="1207000" />
-      <workItem from="1677855977733" duration="47563000" />
+      <workItem from="1677855977733" duration="51306000" />
+      <workItem from="1678112332149" duration="22999000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1677679776074</created>
@@ -185,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677973131233</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="refactoring pagination">
+      <created>1678108914264</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678108914264</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +227,8 @@
     <MESSAGE value="Add pagination for home page (missions)" />
     <MESSAGE value="Refactoring 2" />
     <MESSAGE value="add relations between countries and missions" />
-    <option name="LAST_COMMIT_MESSAGE" value="add relations between countries and missions" />
+    <MESSAGE value="refactoring pagination" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring pagination" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

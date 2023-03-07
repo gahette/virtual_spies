@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Controllers\CountryController;
+use App\Controllers\MissionController;
 use App\Model\Country;
 use App\Model\Mission;
 use App\PaginatedQuery;
@@ -10,15 +12,7 @@ $id = (int)$params['id'];
 $slug = $params['slug'];
 
 $pdo = (new DBConnection())->getPDO();
-$query = $pdo->prepare("SELECT * FROM countries WHERE id = :id");
-$query->execute(['id' => $id]);
-$query->setFetchMode(PDO::FETCH_CLASS, Country::class);
-/** @var  $country | false */
-$country = $query->fetch();
-
-if ($country === false) {
-    throw new Exception('Aucune pays ne correspond à cet id');
-}
+$country = (new CountryController($pdo))->find($id);
 
 if ($country->getSlug() !== $slug || $country->getId() !== $id) {
     $url = $this->url('country', ['id' => $id, 'slug' => $country->getSlug()]);
@@ -29,22 +23,12 @@ if ($country->getSlug() !== $slug || $country->getId() !== $id) {
 
 $title = "{$country->getName()}";
 
-$paginatedQuery = new PaginatedQuery(
-    "SELECT m.*
-FROM missions m
-JOIN country_mission cm on m.id = cm.mission_id
-WHERE cm.country_id = {$country->getId()}
-ORDER BY created_at DESC",
-    "SELECT COUNT(country_id) 
-FROM country_mission 
-WHERE country_id = {$country->getId()}"
-);
-/** @var $mission[] */
-$missions = $paginatedQuery->getItems(Mission::class);
+[$missions, $paginatedQuery] = (new MissionController($pdo))
+    ->findPaginatedForCountry($country->getId());
+
 $link = $this->url('country', ['id' => $country->getId(), 'slug' => $country->getSlug()]);
 ?>
-
-<h1><?= e($country->getName()) ?></h1>
+<h1><?= e($title) ?></h1>
 
 <div class="row">
     <?php foreach ($missions as $mission): ?>
