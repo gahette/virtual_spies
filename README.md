@@ -35,7 +35,7 @@ composer require symfony/var-dumper
 ```bash
 composer require filp/whoops 
 ```
-#### Pour le mettre en place des fichier .env
+#### Pour le mettre en place des fichiers .env
 
 * Mise en place de fichier .env et .env.local avec la commande :
 ```bash
@@ -46,4 +46,9 @@ composer require vlucas/phpdotenv
 * Installation de Faker pour générer de fausse donnée dans la base de donnée avec la commande :
 ```bash
 composer require fakerphp/faker 
+```
+
+#### Système de validation des données avec Valitron
+```bash
+composer require vlucas/valitron
 ```

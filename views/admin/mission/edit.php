@@ -2,6 +2,7 @@
 
 use App\Controllers\MissionController;
 use Database\DBConnection;
+use Valitron\Validator;
 
 $pdo = (new DBConnection)->getPDO();
 $missionController = new MissionController($pdo);
@@ -11,16 +12,20 @@ $success = false;
 $errors = [];
 
 if (!empty($_POST)) {
-    if (empty($_POST['title'])) {
-        $errors['title'][] = 'Le champs titre ne peut pas être vide';
-    }
-    if (mb_strlen($_POST['title']) <= 3) {
-        $errors['title'][] = 'Le champs titre doit contenir plus de 3 caractères';
-    }
+    Validator::lang('fr');
+    $v = new Validator($_POST);
+    $v->labels(array(
+        'title' => 'Le titre',
+        'content' => 'Contenu'
+    ));
+    $v->rule('required', 'title');
+    $v->rule('lengthBetween', 'title', 3, 200);
     $mission->setTitle($_POST['title']);
-    if (empty($errors)) {
+    if ($v->validate()) {
         $missionController->update($mission);
         $success = true;
+    }else{
+  $errors = $v->errors();
     }
 }
 
