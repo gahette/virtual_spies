@@ -13,6 +13,17 @@ class MissionController extends Controller
     protected $table = "missions";
     protected $class = Mission::class;
 
+    public function update(Mission $mission): void
+    {
+        $query = $this->pdo->prepare("UPDATE $this->table SET title = :title  WHERE $this->table.id = :id");
+        $deleteOk = $query->execute([
+            'id'=> $mission->getId(),
+            'title'=> $mission->getTitle()]);
+        if ($deleteOk === false){
+            throw new NotDeleteException($this->table, $id);
+        }
+    }
+    
     public function delete(int $id): void
     {
        $query = $this->pdo->prepare("DELETE FROM $this->table WHERE $this->table.id = ?");

@@ -42,7 +42,7 @@ $router
     ->get('/mission/[*:slug]-[i:id]', 'mission/show', 'mission')
     ->get('/country/[*:slug]-[i:id]', 'country/show', 'country')
     ->get('/admin', 'admin/mission/index', 'admin_missions')
-    ->get('/admin/mission/[i:id]', 'admin/mission/edit', 'admin_mission')
+    ->match('/admin/mission/[i:id]', 'admin/mission/edit', 'admin_mission')
     ->post('/admin/mission/[i:id]/delete', 'admin/mission/delete', 'admin_mission_delete')
     ->get('/admin/mission/new', 'admin/mission/new', 'admin_mission_new')
 

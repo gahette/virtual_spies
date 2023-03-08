@@ -35,6 +35,16 @@ class Mission
     }
 
     /**
+     * @param string $title
+     * @return Mission
+     */
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getSlug(): string
@@ -49,6 +59,16 @@ class Mission
     {
         return $this->content;
     }
+
+    /**
+     * @param string $content
+     */
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+        return $this;
+    }
+
 
     /**
      * @return string
