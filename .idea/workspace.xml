@@ -4,19 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="refactoring pagination">
-      <change afterPath="$PROJECT_DIR$/src/Controllers/Controller.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/CountryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/Exception/NotFoundException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/MissionController.php" afterDir="false" />
+    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="refactoring and listing countries, controllers,NotFoundException">
+      <change afterPath="$PROJECT_DIR$/src/Auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controllers/Exception/NotDeleteException.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/admin/mission/delete.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/admin/mission/edit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/admin/mission/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/admin/mission/new.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Country.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Country.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Mission.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mission.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PaginatedQuery.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaginatedQuery.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/countries/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/countries/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/missions/card.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/missions/card.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/missions/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/missions/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/missions/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/missions/show.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/Exception/NotFoundException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/Exception/NotFoundException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/MissionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/MissionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/countries/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/country/show.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/missions/card.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/mission/card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/missions/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/mission/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/missions/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/mission/show.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +131,8 @@
       <workItem from="1677854327037" duration="390000" />
       <workItem from="1677854751701" duration="1207000" />
       <workItem from="1677855977733" duration="51306000" />
-      <workItem from="1678112332149" duration="22999000" />
+      <workItem from="1678112332149" duration="25910000" />
+      <workItem from="1678278238479" duration="5128000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1677679776074</created>
@@ -200,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678108914264</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactoring and listing countries, controllers,NotFoundException">
+      <created>1678206053427</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1678206053427</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +239,8 @@
     <MESSAGE value="Refactoring 2" />
     <MESSAGE value="add relations between countries and missions" />
     <MESSAGE value="refactoring pagination" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring pagination" />
+    <MESSAGE value="refactoring and listing countries, controllers,NotFoundException" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring and listing countries, controllers,NotFoundException" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

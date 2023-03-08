@@ -33,7 +33,7 @@ $link = $this->url('country', ['id' => $country->getId(), 'slug' => $country->ge
 <div class="row">
     <?php foreach ($missions as $mission): ?>
         <div class="col-md-3">
-            <?php require dirname(__DIR__) . '/missions/card.php' ?>
+            <?php require dirname(__DIR__) . '/mission/card.php' ?>
         </div>
     <?php endforeach; ?>
 </div>

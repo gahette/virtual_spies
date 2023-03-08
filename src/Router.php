@@ -21,6 +21,11 @@ class Router
         return $this;
     }
 
+    public function post(string $url, string $view, ?string $name = null): self // retour sera la class
+    {
+        $this->router->map('POST', $url, $view, $name); // Récupère URL, charge la vue avec le nom
+        return $this;
+    }
     public function url(string $name, array $params = []): string
     {
         return $this->router->generate($name, $params);

@@ -24,5 +24,4 @@ $link = $this->url('home');
 <div class="d-flex justify-content-between my-4">
     <?= $pagination->previousLink($link) ?>
     <?= $pagination->nextLink($link) ?>
-
 </div>

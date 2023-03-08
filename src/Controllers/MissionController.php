@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Controllers\Exception\NotDeleteException;
 use App\Model\Mission;
 use App\PaginatedQuery;
 
@@ -9,17 +10,27 @@ use App\PaginatedQuery;
 class MissionController extends Controller
 
 {
-protected $table = "missions";
-protected $class = Mission::class;
+    protected $table = "missions";
+    protected $class = Mission::class;
+
+    public function delete(int $id): void
+    {
+       $query = $this->pdo->prepare("DELETE FROM $this->table WHERE $this->table.id = ?");
+       $deleteOk = $query->execute([$id]);
+       if ($deleteOk === false){
+           throw new NotDeleteException($this->table, $id);
+       }
+    }
 
     public function findPaginated()
     {
         $paginatedQuery = new PaginatedQuery(
             "SELECT * 
-FROM missions 
-ORDER BY created_at DESC",
-            "SELECT COUNT(id) 
-FROM missions", $this->pdo
+FROM $this->table 
+ORDER BY $this->table.created_at DESC",
+            "SELECT COUNT($this->table.id) 
+FROM $this->table",
+            $this->pdo
         );
         $missions = $paginatedQuery->getItems(Mission::class);
         (new CountryController($this->pdo))->hydrateMissions($missions);
