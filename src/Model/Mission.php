@@ -58,6 +58,9 @@ class Mission
     public function setSlug(string $slug): void
     {
         $this->slug = $slug;
+//        TODO : remplir slug automatiquement en fonction du title
+//        return mb_strtolower(preg_replace(array('/[^a-zA-Z0-9 \'-]/', '/[ -\']+/', '/^-|-$/'),
+//            array('', '-', ''), remove_accent($title)));
     }
 
 

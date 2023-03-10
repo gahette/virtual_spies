@@ -2,6 +2,7 @@
 
 use App\Controllers\MissionController;
 use App\HTML\Form;
+use App\Validators\MissionValidator;
 use Database\DBConnection;
 use Valitron\Validator;
 
@@ -14,15 +15,7 @@ $errors = [];
 
 if (!empty($_POST)) {
     Validator::lang('fr');
-    $v = new Validator($_POST);
-    $v->labels(array(
-        'title' => 'Le titre',
-        'slug' => 'Le slug',
-        'nickname' => 'Le nom de code',
-        'content' => 'La description'
-    ));
-    $v->rule('required', ['title', 'slug']);
-    $v->rule('lengthBetween', ['title', 'slug'], 3, 200);
+    $v = new MissionValidator($_POST, $missionController, $mission->getId());
 
     $mission->setTitle($_POST['title']);
     $mission->setCreatedAt($_POST['created_at']);
@@ -47,7 +40,7 @@ $form = new Form($mission, $errors);
 
 <?php if (!empty($errors)): ?>
     <div class="alert alert-danger">
-        L'article n'a pas pu être modifier
+        La mission n'a pas pu être modifié, merci de corriger vos erreurs
     </div>
 <?php endif; ?>
 
