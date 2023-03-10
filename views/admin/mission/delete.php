@@ -10,6 +10,7 @@ $pdo = (new DBConnection)->getPDO();
 $missionController = new MissionController($pdo);
 $missionController->delete($params['id']);
 header('Location:' .$this->url('admin_missions') . '?delete=1');
+exit;
 
 
 ?>

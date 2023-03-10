@@ -20,7 +20,9 @@ $link = $this->url('admin_missions');
     <thead>
     <th>#</th>
     <th>Titre</th>
-    <th>Actions</th>
+    <th>
+        <a href="<?= $this->url('admin_mission_new') ?>" class="btn btn-primary">Créer une nouvelle mission</a>
+    </th>
     </thead>
     <tbody>
     <?php foreach ($missions as $mission): ?>
@@ -33,7 +35,7 @@ $link = $this->url('admin_missions');
             </td>
             <td>
                 <a href="<?= $this->url('admin_mission', ['id' => $mission->getId()]) ?>" class="btn btn-primary">
-                    Editer
+                    Modifier
                 </a>
                 <form action="<?= $this->url('admin_mission_delete', ['id' => $mission->getId()]) ?>" method="POST"
                       onsubmit="return confirm ('Voulez-vous vraiment effectuer cette action ?')" style="display:inline">

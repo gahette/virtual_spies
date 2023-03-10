@@ -8,13 +8,13 @@ use Exception;
 
 class Mission
 {
-    private int $id;
-    private string $title;
-    private string $slug;
-    private string $content;
-    private string $nickname;
-    private $created_at;
-    private $closed_at;
+    private $id;
+    private string $title = "";
+    private string $slug="";
+    private string $content="";
+    private string $nickname="";
+    private $created_at = "";
+    private $closed_at= "";
 
     private array $countries = [];
 
@@ -27,11 +27,22 @@ class Mission
     }
 
     /**
+     * @param int $id
+     * @return Mission
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string
     {
         return $this->title;
+
     }
 
     /**
@@ -74,6 +85,7 @@ class Mission
 
     /**
      * @param string $content
+     * @return Mission
      */
     public function setContent(string $content): self
     {
@@ -111,7 +123,7 @@ class Mission
     /**
      * @param mixed $created_at
      */
-    public function setCreatedAt($created_at): void
+    public function setCreatedAt(mixed $created_at): void
     {
         $this->created_at = $created_at;
     }

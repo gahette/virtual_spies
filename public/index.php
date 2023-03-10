@@ -44,6 +44,6 @@ $router
     ->get('/admin', 'admin/mission/index', 'admin_missions')
     ->match('/admin/mission/[i:id]', 'admin/mission/edit', 'admin_mission')
     ->post('/admin/mission/[i:id]/delete', 'admin/mission/delete', 'admin_mission_delete')
-    ->get('/admin/mission/new', 'admin/mission/new', 'admin_mission_new')
+    ->match('/admin/mission/new', 'admin/mission/new', 'admin_mission_new')
 
     ->run();

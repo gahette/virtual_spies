@@ -3,6 +3,7 @@
 namespace App;
 
 use AltoRouter;
+use Exception;
 
 class Router
 {
@@ -15,23 +16,36 @@ class Router
         $this->router = new AltoRouter(); // Démarrage du router
     }
 
+    /**
+     * @throws Exception
+     */
     public function get(string $url, string $view, ?string $name = null): self // retour sera la class
     {
         $this->router->map('GET', $url, $view, $name); // Récupère URL, charge la vue avec le nom
         return $this;
     }
 
+    /**
+     * @throws Exception
+     */
     public function post(string $url, string $view, ?string $name = null): self // retour sera la class
     {
         $this->router->map('POST', $url, $view, $name); // Récupère URL, charge la vue avec le nom
         return $this;
     }
 
+    /**
+     * @throws Exception
+     */
     public function match(string $url, string $view, ?string $name = null): self // retour sera la class
     {
         $this->router->map('POST|GET', $url, $view, $name); // Récupère URL, charge la vue avec le nom
         return $this;
     }
+
+    /**
+     * @throws Exception
+     */
     public function url(string $name, array $params = []): string
     {
         return $this->router->generate($name, $params);
