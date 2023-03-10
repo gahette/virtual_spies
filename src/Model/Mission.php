@@ -53,6 +53,15 @@ class Mission
     }
 
     /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
+    }
+
+
+    /**
      * @return string
      */
     public function getContent(): string
@@ -79,6 +88,15 @@ class Mission
     }
 
     /**
+     * @param string $nickname
+     */
+    public function setNickname(string $nickname): void
+    {
+        $this->nickname = $nickname;
+    }
+
+
+    /**
      * @return DateTime
      * @throws Exception
      */
@@ -88,6 +106,15 @@ class Mission
     }
 
     /**
+     * @param mixed $created_at
+     */
+    public function setCreatedAt($created_at): void
+    {
+        $this->created_at = $created_at;
+    }
+
+
+    /**
      * @return DateTime
      * @throws Exception
      */
@@ -95,6 +122,16 @@ class Mission
     {
         return new DateTime($this->closed_at);
     }
+
+    /**
+     * @param mixed $closed_at
+     */
+    public function setClosedAt(string $closed_at): self
+    {
+        $this->closed_at = $closed_at;
+        return $this;
+    }
+
 
     public function getExcerpt(): ?string
     {

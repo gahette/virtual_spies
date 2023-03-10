@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\MissionController;
+use App\HTML\Form;
 use Database\DBConnection;
 use Valitron\Validator;
 
@@ -16,19 +17,27 @@ if (!empty($_POST)) {
     $v = new Validator($_POST);
     $v->labels(array(
         'title' => 'Le titre',
-        'content' => 'Contenu'
+        'slug' => 'Le slug',
+        'nickname' => 'Le nom de code',
+        'content' => 'La description'
     ));
-    $v->rule('required', 'title');
-    $v->rule('lengthBetween', 'title', 3, 200);
+    $v->rule('required', ['title', 'slug']);
+    $v->rule('lengthBetween', ['title', 'slug'], 3, 200);
+
     $mission->setTitle($_POST['title']);
+    $mission->setCreatedAt($_POST['created_at']);
+    $mission->setContent($_POST['content']);
+    $mission->setSlug($_POST['slug']);
+    $mission->setNickname($_POST['nickname']);
+
     if ($v->validate()) {
         $missionController->update($mission);
         $success = true;
-    }else{
-  $errors = $v->errors();
+    } else {
+        $errors = $v->errors();
     }
 }
-
+$form = new Form($mission, $errors);
 ?>
 <?php if ($success): ?>
     <div class="alert alert-success">
@@ -45,16 +54,11 @@ if (!empty($_POST)) {
 <h1>Éditer la mission <?= e($mission->getTitle()) ?></h1>
 
 <form action="" method="POST">
-    <div class="form-group">
-        <label for="title">Titre</label>
-        <input type="text" class="form-control <?= isset($errors['title']) ? 'is-invalid' : '' ?>" name="title"
-               value="<?= e($mission->getTitle()) ?>">
-        <?php if (isset($errors['title'])): ?>
-            <div class="invalid-feedback">
-                <?= implode('<br>', $errors['title']) ?>
-            </div>
-        <?php endif; ?>
-    </div>
-    <button class="btn btn-primary">Modifier</button>
+    <?= $form->input('title', 'Titre'); ?>
+    <?= $form->input('created_at', 'Date de création'); ?>
+    <?= $form->input('slug', 'URL'); ?>
+    <?= $form->input('nickname', 'Nom de code'); ?>
+    <?= $form->textarea('content', 'Description'); ?>
+    <button class="btn btn-primary mt-4">Modifier</button>
 </form>
 

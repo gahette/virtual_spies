@@ -15,11 +15,16 @@ class MissionController extends Controller
 
     public function update(Mission $mission): void
     {
-        $query = $this->pdo->prepare("UPDATE $this->table SET title = :title  WHERE $this->table.id = :id");
-        $deleteOk = $query->execute([
+        $query = $this->pdo->prepare("UPDATE $this->table SET $this->table.title = :title, $this->table.slug = :slug, $this->table.content = :content, $this->table.nickname = :nickname, $this->table.created_at = :created WHERE $this->table.id = :id");
+        $updateOk = $query->execute([
             'id'=> $mission->getId(),
-            'title'=> $mission->getTitle()]);
-        if ($deleteOk === false){
+            'title'=> $mission->getTitle(),
+            'slug'=>$mission->getSlug(),
+            'content'=>$mission->getContent(),
+            'nickname'=>$mission->getNickname(),
+            'created'=>$mission->getCreatedAt()->format('Y-m-d H:i:s')
+        ]);
+        if ($updateOk === false){
             throw new NotDeleteException($this->table, $id);
         }
     }
