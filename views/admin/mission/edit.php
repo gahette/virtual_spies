@@ -1,10 +1,13 @@
 <?php
 
+use App\Auth;
 use App\Controllers\MissionController;
 use App\HTML\Form;
 use App\ObjectHelper;
 use App\Validators\MissionValidator;
 use Database\DBConnection;
+
+Auth::check();
 
 $pdo = (new DBConnection)->getPDO();
 $missionController = new MissionController($pdo);
@@ -18,7 +21,7 @@ if (!empty($_POST)) {
 
     ObjectHelper::hydrate($mission, $_POST, ['title', 'created_at', 'content', 'slug', 'nickname']);
     if ($v->validate()) {
-        $missionController->update($mission);
+        $missionController->updateMission($mission);
         $success = true;
     } else {
         $errors = $v->errors();

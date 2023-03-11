@@ -1,4 +1,4 @@
-<form action="" method="POST" xmlns="http://www.w3.org/1999/html">
+<form action="" method="POST">
     <?= $form->input('title', 'Titre'); ?>
     <?= $form->input('created_at', 'Date de création'); ?>
     <?= $form->input('slug', 'URL'); ?>

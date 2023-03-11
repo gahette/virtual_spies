@@ -57,10 +57,12 @@ class Router
         $view = $match['target']; // Récupère les view
         $params = $match['params'];
         $router = $this;
+        $isAdmin = strpos($view, 'admin/') !== false;
+        $layout = $isAdmin ? 'admin/layouts/default' : 'layouts/default';
         ob_start(); // Démarre la buffer
         require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
         $content = ob_get_clean(); // Récupération du contenu
-        require $this->viewPath . DIRECTORY_SEPARATOR . 'layouts/default.php';
+        require $this->viewPath . DIRECTORY_SEPARATOR . $layout . '.php';
 
         return $this;
     }

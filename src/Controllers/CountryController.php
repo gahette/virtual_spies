@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
-
 use App\Model\Country;
 use App\Model\Mission;
+
+use App\PaginatedQuery;
+use Exception;
 use PDO;
 
 class CountryController extends Controller
@@ -33,5 +35,35 @@ WHERE cm.mission_id IN (' . implode(',', array_keys($missionsByID)) . ')'
         foreach ($countries as $country) {
             $missionsByID[$country->getMissionId()]->addCountry($country);
         }
+    }
+
+    public function createCountry(Country $country)
+    {
+        $id= $this->create([
+            'name' => $country->getName(),
+            'slug' => $country->getSlug(),
+            'nationalities' => $country->getNationalities(),
+            'iso3166' => $country->getIso3166()
+        ]);
+        $country->setId($id);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function findPaginatedCountries()
+    {
+        $paginatedQuery = new PaginatedQuery(
+            "
+SELECT * 
+FROM $this->table 
+",
+            "SELECT COUNT($this->table.id) 
+FROM $this->table",
+            $this->pdo
+        );
+        $countries = $paginatedQuery->getItems(Country::class);
+
+        return [$countries, $paginatedQuery];
     }
 }

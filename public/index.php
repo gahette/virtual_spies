@@ -39,11 +39,17 @@ $router = new Router(dirname(__DIR__) . '/views'); // Router qui contient le che
 
 $router
     ->get('/', 'mission/index', 'home')
-    ->get('/mission/[*:slug]-[i:id]', 'mission/show', 'mission')
     ->get('/country/[*:slug]-[i:id]', 'country/show', 'country')
+    ->get('/mission/[*:slug]-[i:id]', 'mission/show', 'mission')
+//    ADMIN
+//    Gestion des missions
     ->get('/admin', 'admin/mission/index', 'admin_missions')
     ->match('/admin/mission/[i:id]', 'admin/mission/edit', 'admin_mission')
     ->post('/admin/mission/[i:id]/delete', 'admin/mission/delete', 'admin_mission_delete')
     ->match('/admin/mission/new', 'admin/mission/new', 'admin_mission_new')
-
+//    Gestion des pays
+    ->get('/admin/countries', 'admin/country/index', 'admin_countries')
+    ->match('/admin/country/[i:id]', 'admin/country/edit', 'admin_country')
+    ->post('/admin/country/[i:id]/delete', 'admin/country/delete', 'admin_country_delete')
+    ->match('/admin/country/new', 'admin/country/new', 'admin_country_new')
     ->run();

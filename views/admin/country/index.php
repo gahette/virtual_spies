@@ -1,17 +1,17 @@
 <?php
 
 use App\Auth;
-use App\Controllers\MissionController;
+use App\Controllers\CountryController;
 use Database\DBConnection;
-
 
 Auth::check();
 
-$title = "Administration";
+$title = "Gestion des pays";
 $pdo = (new DBConnection)->getPDO();
-$link = $this->url('admin_missions');
+$link = $this->url('admin_countries');
+//$countries = (new CountryController($pdo))->all();
 
-[$missions, $pagination] = (new MissionController($pdo))->findPaginated();
+[$countries, $pagination] = (new CountryController($pdo))->findPaginatedCountries();
 
 ?>
 
@@ -23,25 +23,27 @@ $link = $this->url('admin_missions');
 <table class="table">
     <thead>
     <th>#</th>
-    <th>Titre</th>
+    <th>Nom</th>
+    <th>URL</th>
     <th>
-        <a href="<?= $this->url('admin_mission_new') ?>" class="btn btn-primary">Créer une nouvelle mission</a>
+        <a href="<?= $this->url('admin_country_new') ?>" class="btn btn-primary">Créer un nouveau pays</a>
     </th>
     </thead>
     <tbody>
-    <?php foreach ($missions as $mission): ?>
+    <?php foreach ($countries as $country): ?>
         <tr>
-            <td>#<?= $mission->getId() ?></td>
+            <td>#<?= $country->getId() ?></td>
             <td>
-                <a href="<?= $this->url('admin_mission', ['id' => $mission->getId()]) ?>">
-                    <?= e($mission->getTitle()) ?>
+                <a href="<?= $this->url('admin_country', ['id' => $country->getId()]) ?>">
+                    <?= e($country->getName()) ?>
                 </a>
             </td>
+            <td><?= $country->getSlug() ?></td>
             <td>
-                <a href="<?= $this->url('admin_mission', ['id' => $mission->getId()]) ?>" class="btn btn-primary">
+                <a href="<?= $this->url('admin_country', ['id' => $country->getId()]) ?>" class="btn btn-primary">
                     Modifier
                 </a>
-                <form action="<?= $this->url('admin_mission_delete', ['id' => $mission->getId()]) ?>" method="POST"
+                <form action="<?= $this->url('admin_country_delete', ['id' => $country->getId()]) ?>" method="POST"
                       onsubmit="return confirm ('Voulez-vous vraiment effectuer cette action ?')" style="display:inline">
                     <button type="submit" class="btn btn-danger">supprimer</button>
                 </form>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Auth;
 use App\Controllers\MissionController;
 use App\HTML\Form;
 use App\Model\Mission;
@@ -7,7 +8,7 @@ use App\ObjectHelper;
 use App\Validators\MissionValidator;
 use Database\DBConnection;
 
-
+Auth::check();
 
 $errors = [];
 $mission = new Mission();
@@ -18,7 +19,7 @@ if (!empty($_POST)) {
     $v = new MissionValidator($_POST, $missionController, $mission->getId());
     ObjectHelper::hydrate($mission, $_POST, ['title', 'created_at', 'content', 'slug', 'nickname']);
     if ($v->validate()) {
-        $missionController->create($mission);
+        $missionController->createMission($mission);
         header('Location: ' .$this->url('admin_mission', ['id'=>$mission->getId()]) . '?created=1');
         exit;
     } else {
