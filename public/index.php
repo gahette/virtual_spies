@@ -41,6 +41,8 @@ $router
     ->get('/', 'mission/index', 'home')
     ->get('/country/[*:slug]-[i:id]', 'country/show', 'country')
     ->get('/mission/[*:slug]-[i:id]', 'mission/show', 'mission')
+    ->match('/login', 'auth/login', 'login')
+    ->post('/logout','auth/logout', 'logout')
 //    ADMIN
 //    Gestion des missions
     ->get('/admin', 'admin/mission/index', 'admin_missions')

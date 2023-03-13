@@ -3,6 +3,7 @@
 namespace App;
 
 use AltoRouter;
+use App\Security\ForbiddenException;
 use Exception;
 
 class Router
@@ -46,7 +47,7 @@ class Router
     /**
      * @throws Exception
      */
-    public function url(string $name, array $params = []): string
+    public function url(string $name, array $params = [])
     {
         return $this->router->generate($name, $params);
     }
@@ -54,16 +55,26 @@ class Router
     public function run(): self
     {
         $match = $this->router->match(); // Renvoie tableau associatif contenant les correspondances
-        $view = $match['target']; // Récupère les view
+        try {
+            $view = $match['target']; // Récupère les view
+        }catch(\ErrorException $e){
+            require $this->viewPath . DIRECTORY_SEPARATOR . 'e404.php';
+            exit;
+        }
         $params = $match['params'];
         $router = $this;
         $isAdmin = strpos($view, 'admin/') !== false;
         $layout = $isAdmin ? 'admin/layouts/default' : 'layouts/default';
-        ob_start(); // Démarre la buffer
-        require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
-        $content = ob_get_clean(); // Récupération du contenu
-        require $this->viewPath . DIRECTORY_SEPARATOR . $layout . '.php';
 
+        try {
+            ob_start(); // Démarre la buffer
+            require $this->viewPath . DIRECTORY_SEPARATOR . $view . '.php';
+            $content = ob_get_clean(); // Récupération du contenu
+            require $this->viewPath . DIRECTORY_SEPARATOR . $layout . '.php';
+        }catch(ForbiddenException $e){
+            header('Location: ' . $this->url('login'). '?forbidden=1');
+            exit;
+        }
         return $this;
     }
 }
