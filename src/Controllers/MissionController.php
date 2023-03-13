@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\Exception\NotCreateException;
-use App\Controllers\Exception\NotUpdateException;
 use App\Model\Mission;
 use App\PaginatedQuery;
 use Exception;
@@ -16,7 +15,8 @@ class MissionController extends Controller
     protected $class = Mission::class;
 
     /**
-     * @throws NotUpdateException
+     * @param Mission $mission
+     * @throws NotCreateException
      * @throws Exception
      */
     public function updateMission(Mission $mission): void
@@ -48,10 +48,19 @@ class MissionController extends Controller
         $mission->setId($id);
     }
 
+    public function attachCountries(int $id, array $countries)
+    {
+        $this->pdo->exec('DELETE FROM country_mission WHERE mission_id = ' . $id);
+        $query = $this->pdo->prepare('INSERT INTO country_mission SET mission_id = ?, country_id = ? ');
+        foreach ($countries as $country){
+            $query->execute([$id, $country]);
+        }
+    }
+
     /**
      * @throws Exception
      */
-    public function findPaginated()
+    public function findPaginated(): array
     {
         $paginatedQuery = new PaginatedQuery(
             "
@@ -70,7 +79,7 @@ FROM $this->table",
     /**
      * @throws Exception
      */
-    public function findPaginatedForCountry(int $countryID)
+    public function findPaginatedForCountry(int $countryID): array
     {
         $paginatedQuery = new PaginatedQuery(
             "

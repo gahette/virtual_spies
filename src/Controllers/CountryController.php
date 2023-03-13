@@ -23,6 +23,7 @@ class CountryController extends Controller
     {
         $missionsByID = [];
         foreach ($missions as $mission) {
+            $mission->setCountries([]);
             $missionsByID[$mission->getId()] = $mission;
         }
         $countries = $this->pdo
@@ -65,5 +66,15 @@ FROM $this->table",
         $countries = $paginatedQuery->getItems(Country::class);
 
         return [$countries, $paginatedQuery];
+    }
+
+    public function list(): array
+    {
+        $countries = $this->all();
+        $results = [];
+        foreach ($countries as $country){
+            $results[$country->getId()] = $country->getName();
+        }
+        return $results;
     }
 }

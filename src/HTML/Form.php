@@ -23,7 +23,6 @@ class Form
     {
 
         $value = $this->getValue($key);
-
         return <<<HTML
          <div class="form-group">
             <label for="field$key">$label</label>
@@ -38,7 +37,6 @@ HTML;
 
     {
         $value = $this->getValue($key);
-
         return <<<HTML
          <div class="form-group">
             <label for="field$key">$label</label>
@@ -49,15 +47,34 @@ HTML;
 HTML;
     }
 
+    public function select(string $key, string $label, array $options = []): string
+    {
+        $optionsHTML =[];
+        $value = $this->getValue($key);
+        foreach ($options as $k => $v){
+            $selected = in_array($k, $value) ? "selected" : "";
+            $optionsHTML[] = "<option value=\"$k\" $selected>$v</option>";
+        }
+//        $value = $this->getValue($key);
+        $optionsHTML = implode('', $optionsHTML);
+        return <<<HTML
+         <div class="form-group">
+            <label for="field$key">$label</label>
+            <select id="field$key" class="{$this->getInputClass($key)}" name="{$key}[]" multiple required>$optionsHTML</select>
+            {$this->getErrorFeedback($key)}
+         </div>
 
-    private function getValue(string $key): ?string
+HTML;
+    }
+
+    private function getValue(string $key)
     {
         if (is_array($this->data)) {
             return $this->data[$key] ?? null;
         }
-        $method = 'get' . str_replace(' ','', ucwords(str_replace('_',' ', $key)));
-        $value =  $this->data->$method();
-        if ($value instanceof DateTimeInterface){
+        $method = 'get' . str_replace(' ', '', ucwords(str_replace('_', ' ', $key)));
+        $value = $this->data->$method();
+        if ($value instanceof DateTimeInterface) {
             return $value->format('Y-m-d H:i:s');
         }
         return $value;

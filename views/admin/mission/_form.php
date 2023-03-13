@@ -3,6 +3,7 @@
     <?= $form->input('created_at', 'Date de création'); ?>
     <?= $form->input('slug', 'URL'); ?>
     <?= $form->input('nickname', 'Nom de code'); ?>
+    <?= $form->select('countries_ids', 'Country', $countries); ?>
     <?= $form->textarea('content', 'Description'); ?>
     <button class="btn btn-primary mt-4">
         <?php if ($mission->getId() !== null): ?>

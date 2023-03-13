@@ -161,10 +161,30 @@ class Mission
         return $this->countries;
     }
 
+    /**
+     * @param array $countries
+     */
+    public function setCountries(array $countries): void
+    {
+        $this->countries = $countries;
+    }
+
+
+
+    public function getCountriesIds(): array
+    {
+        $ids = [];
+        foreach($this->countries as $country){
+            $ids[] = $country->getId();
+        }
+        return $ids;
+    }
+
     public function addCountry(Country $country): void
     {
         $this->countries[] = $country;
         $country->setMission($this);
     }
+
 
 }

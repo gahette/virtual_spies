@@ -1,6 +1,7 @@
 <?php
 
 use App\Auth;
+use App\Controllers\CountryController;
 use App\Controllers\MissionController;
 use App\HTML\Form;
 use App\Model\Mission;
@@ -12,14 +13,20 @@ Auth::check();
 
 $errors = [];
 $mission = new Mission();
+$pdo = (new DBConnection)->getPDO();
+$countryController = new CountryController($pdo);
+$countries = $countryController->list();
 
 if (!empty($_POST)) {
-    $pdo = (new DBConnection)->getPDO();
+
     $missionController = new MissionController($pdo);
-    $v = new MissionValidator($_POST, $missionController, $mission->getId());
+    $v = new MissionValidator($_POST, $missionController, $countries, $mission->getId());
     ObjectHelper::hydrate($mission, $_POST, ['title', 'created_at', 'content', 'slug', 'nickname']);
     if ($v->validate()) {
+        $pdo->beginTransaction();
         $missionController->createMission($mission);
+        $missionController->attachCountries($mission->getId(),$_POST['countries_ids']);
+        $pdo->commit();
         header('Location: ' .$this->url('admin_mission', ['id'=>$mission->getId()]) . '?created=1');
         exit;
     } else {
