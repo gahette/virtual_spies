@@ -1,4 +1,9 @@
 <?php
+
+use App\Auth;
+
+Auth::check();
+
 $countries = [];
 foreach ($mission->getCountries() as $country) {
     $url = $this->url('country', ['id' => $country->getId(), 'slug' => $country->getSlug()]);

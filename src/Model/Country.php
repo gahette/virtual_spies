@@ -14,6 +14,12 @@ class Country
 
     private $mission;
 
+    private $agent_id;
+    /**
+     * @var
+     */
+    private $agent;
+
     /**
      * @return mixed
      */
@@ -95,14 +101,39 @@ class Country
         $this->iso3166 = $iso3166;
     }
 
+    /**
+     * @return int|null
+     */
     public function getMissionId(): ?int
     {
         return $this->mission_id;
     }
 
-    public function setMission(Mission $mission)
+    /**
+     * @param Mission $mission
+     * @return void
+     */
+    public function setMission(Mission $mission): void
     {
         $this->mission = $mission;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getAgentId(): ?int
+    {
+        return $this->agent_id;
+    }
+
+    /**
+     * @param Agent $agent
+     * @return void
+     */
+    public function setAgent(Agent $agent): void
+    {
+        $this->agent = $agent;
+    }
+
 
 }

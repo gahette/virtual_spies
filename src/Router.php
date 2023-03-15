@@ -63,7 +63,7 @@ class Router
         }
         $params = $match['params'];
         $router = $this;
-        $isAdmin = strpos($view, 'admin/') !== false;
+        $isAdmin = strpos($view, 'login') === false;
         $layout = $isAdmin ? 'admin/layouts/default' : 'layouts/default';
 
         try {

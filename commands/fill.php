@@ -11,8 +11,9 @@ $pdo = (new DBConnection)->getPDO();
 
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
 
-$pdo->exec('TRUNCATE country_mission');
+$pdo->exec('TRUNCATE TABLE country_mission');
 $pdo->exec('TRUNCATE TABLE missions');
+$pdo->exec('TRUNCATE TABLE agents');
 //$pdo->getPDO()->exec('TRUNCATE TABLE countries');
 $pdo->exec('TRUNCATE TABLE USERS');
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 1');
@@ -26,6 +27,14 @@ for ($i = 0; $i < 30; $i++) {
                          nickname='$faker->username', 
                          created_at='$faker->date, $faker->time', 
                          closed_at='$faker->date, $faker->time'
+                         ");
+}
+for ($i = 0; $i < 30; $i++) {
+    $pdo->exec("INSERT INTO agents SET 
+                         lastname='$faker->userName', 
+                         slug='$faker->slug', 
+                         firstname='$faker->userName',
+                         bod='$faker->date, $faker->time', 
                          ");
 }
 for ($i = 1; $i < 245; $i++) {

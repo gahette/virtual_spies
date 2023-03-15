@@ -1,23 +1,23 @@
 <?php
 
 use App\Auth;
-use App\Controllers\MissionController;
+use App\Controllers\AgentController;
 use Database\DBConnection;
 
 
 Auth::check();
 
-$title = "Administration des missions";
+$title = "Administration des agents";
 $pdo = (new DBConnection)->getPDO();
-$link = $this->url('admin_missions');
+$link = $this->url('admin_agents');
 
-[$missions, $pagination] = (new MissionController($pdo))->findPaginated();
+[$agents, $pagination] = (new AgentController($pdo))->findPaginated();
 
 ?>
 
 <?php if (isset($_GET['delete'])): ?>
     <div class="alert alert-success">
-        La mission a bien été supprimer
+        L'agent a bien été supprimer
     </div>
 <?php endif; ?>
 <table class="table">
@@ -25,23 +25,23 @@ $link = $this->url('admin_missions');
     <th>#</th>
     <th>Titre</th>
     <th>
-        <a href="<?= $this->url('admin_mission_new') ?>" class="btn btn-primary">Créer une nouvelle mission</a>
+        <a href="<?= $this->url('admin_agent_new') ?>" class="btn btn-primary">Créer un nouvel agent</a>
     </th>
     </thead>
     <tbody>
-    <?php foreach ($missions as $mission): ?>
+    <?php foreach ($agents as $agent): ?>
         <tr>
-            <td>#<?= $mission->getId() ?></td>
+            <td>#<?= $agent->getId() ?></td>
             <td>
-                <a href="<?= $this->url('admin_mission', ['id' => $mission->getId()]) ?>">
-                    <?= e($mission->getTitle()) ?>
+                <a href="<?= $this->url('admin_agent', ['id' => $agent->getId()]) ?>">
+                    <?= e($agent->getLastname()) ?>
                 </a>
             </td>
             <td>
-                <a href="<?= $this->url('admin_mission', ['id' => $mission->getId()]) ?>" class="btn btn-primary">
+                <a href="<?= $this->url('admin_agent', ['id' => $agent->getId()]) ?>" class="btn btn-primary">
                     Modifier
                 </a>
-                <form action="<?= $this->url('admin_mission_delete', ['id' => $mission->getId()]) ?>" method="POST"
+                <form action="<?= $this->url('admin_agent_delete', ['id' => $agent->getId()]) ?>" method="POST"
                       onsubmit="return confirm ('Voulez-vous vraiment effectuer cette action ?')" style="display:inline">
                     <button type="submit" class="btn btn-danger">supprimer</button>
                 </form>

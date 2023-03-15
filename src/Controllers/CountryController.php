@@ -38,6 +38,24 @@ WHERE cm.mission_id IN (' . implode(',', array_keys($missionsByID)) . ')'
         }
     }
 
+    public function hydrateAgents(array $agents): void
+    {
+        $missionsByID = [];
+        foreach ($agents as $agent) {
+            $agent->setCountries([]);
+            $agentsByID[$agent->getId()] = $agent;
+        }
+        $countries = $this->pdo
+            ->query('SELECT c.*, ca.agent_id
+FROM country_agent ca 
+JOIN countries c on c.id = ca.country_id
+WHERE ca.agent_id IN (' . implode(',', array_keys($agentsByID)) . ')'
+            )->fetchAll(PDO::FETCH_CLASS, $this->class);
+
+        foreach ($countries as $country) {
+            $agentsByID[$country->getAgentId()]->addCountry($country);
+        }
+    }
     public function createCountry(Country $country)
     {
         $id= $this->create([

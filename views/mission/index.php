@@ -1,15 +1,18 @@
 <?php
 $title = 'Missions';
 
+use App\Auth;
 use App\Controllers\MissionController;
 use Database\DBConnection;
+
+Auth::check();
 
 $pdo = (new DBConnection)->getPDO();
 
 $missionController = new MissionController($pdo);
 [$missions, $pagination] = $missionController->findPaginated();
 
-$link = $this->url('home');
+$link = $this->url('missions');
 ?>
 <h1>Mes missions</h1>
 

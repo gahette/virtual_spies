@@ -1,10 +1,12 @@
 <?php
 
 
+use App\Auth;
 use App\Controllers\MissionController;
-use App\Model\Country;
-use App\Model\Mission;
+
 use Database\DBConnection;
+
+Auth::check();
 
 $id = (int)$params['id'];
 $slug = $params['slug'];
@@ -31,4 +33,4 @@ $title = "{$mission->getTitle()}";
 <?php endforeach; ?>
 <p><?= nl2br(e($mission->getContent())) ?></p>
 
-<p><a href="<?= $this->url('home') ?>" class="btn btn-dark">Retour</a></p>
+<p><a href="<?= $this->url('missions') ?>" class="btn btn-dark">Retour</a></p>

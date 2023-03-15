@@ -19,7 +19,7 @@ if (!empty($_POST)) {
             if (password_verify($_POST['password'], $u->getPassword()) === true) {
                 session_start();
                 $_SESSION['auth'] = $u->getId();
-                header('Location: ' . $this->url('admin_missions'));
+                header('Location: ' . $this->url('missions'));
                 exit;
             }
         } catch (NotFoundException $e) {

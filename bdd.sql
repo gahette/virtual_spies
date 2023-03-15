@@ -53,4 +53,31 @@ CREATE TABLE `users`
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 5
   DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_general_ci
+  COLLATE = utf8mb4_general_ci;
+
+create table agents
+(
+    id        int auto_increment
+        primary key,
+    lastname  varchar(255) not null,
+    firstname varchar(255) not null,
+    bod       datetime     not null,
+    picture   blob         null
+)
+    collate = utf8mb4_general_ci;
+
+create table country_agent
+(
+    country_id int not null,
+    agent_id int not null,
+    constraint country_agent_countries_id_fk
+        foreign key (country_id) references countries (id)
+            on update cascade on delete cascade,
+    constraint country_agent_missions_id_fk
+        foreign key (agent_id) references agents (id)
+            on update cascade on delete cascade
+)
+    collate = utf8mb4_general_ci;
+
+create index country_agent_country_id_fk
+    on country_agent (country_id);
