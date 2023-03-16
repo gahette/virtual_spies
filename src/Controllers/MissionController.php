@@ -56,6 +56,15 @@ class MissionController extends Controller
             $query->execute([$id, $country]);
         }
     }
+    public function attachAgents(int $id, array $agents)
+    {
+        $this->pdo->exec('DELETE FROM agent_mission WHERE mission_id =' .$id);
+        $query = $this->pdo->prepare('INSERT INTO agent_mission SET mission_id = ?, agent_id = ?');
+        foreach ($agents as $agent){
+            $query->execute([$id, $agent]);
+        }
+    }
+
 
     /**
      * @throws Exception
@@ -73,6 +82,7 @@ FROM $this->table",
         );
         $missions = $paginatedQuery->getItems(Mission::class);
         (new CountryController($this->pdo))->hydrateMissions($missions);
+        (new AgentController($this->pdo))->hydrateMissions($missions);
         return [$missions, $paginatedQuery];
     }
 

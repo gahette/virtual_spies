@@ -14,7 +14,7 @@ class MissionValidator extends AbstractValidator
      * @param int|null $missionID
      * @param array $countries
      */
-    public function __construct(array $data, MissionController $missionController, array $countries, ?int $missionID = null)
+    public function __construct(array $data, MissionController $missionController, array $countries,array $agents, ?int $missionID = null)
     {
 
         parent::__construct($data);
@@ -22,6 +22,7 @@ class MissionValidator extends AbstractValidator
         $this->validator->rule('lengthBetween', ['title', 'slug'], 3, 200);
         $this->validator->rule('slug', 'slug');
         $this->validator->rule('subset','countries_ids',array_keys($countries));
+        $this->validator->rule('subset','agents_ids',array_keys($agents));
         $this->validator->rule(function ($field, $value) use ($missionController, $missionID) {
             return !$missionController->exists($field, $value, $missionID);
         }, ['slug', 'title'], 'est déjà utilisé');

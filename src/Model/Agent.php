@@ -16,6 +16,10 @@ class Agent
 
     private array $countries = [];
 
+    private $mission_id;
+
+    private $mission;
+
     /**
      * @return int|null
      */
@@ -98,7 +102,7 @@ class Agent
     }
 
     /**
-     * @return array
+     * @return Country[]
      */
     public function getCountries(): array
     {
@@ -126,6 +130,19 @@ class Agent
     {
         $this->countries[] = $country;
         $country->setAgent($this);
+    }
+    public function getMissionId(): ?int
+    {
+        return $this->mission_id;
+    }
+
+    /**
+     * @param Mission $mission
+     * @return void
+     */
+    public function setMission(Mission $mission): void
+    {
+        $this->mission = $mission;
     }
 
 }

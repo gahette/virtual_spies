@@ -11,6 +11,7 @@ $title = "Administration des agents";
 $pdo = (new DBConnection)->getPDO();
 $link = $this->url('admin_agents');
 
+
 [$agents, $pagination] = (new AgentController($pdo))->findPaginated();
 
 ?>
@@ -23,7 +24,10 @@ $link = $this->url('admin_agents');
 <table class="table">
     <thead>
     <th>#</th>
-    <th>Titre</th>
+    <th>Agent</th>
+    <th>Prénom</th>
+    <th>Nationalité</th>
+    <th>Spécialité</th>
     <th>
         <a href="<?= $this->url('admin_agent_new') ?>" class="btn btn-primary">Créer un nouvel agent</a>
     </th>
@@ -38,11 +42,35 @@ $link = $this->url('admin_agents');
                 </a>
             </td>
             <td>
+                <a href="<?= $this->url('admin_agent', ['id' => $agent->getId()]) ?>">
+                    <?= e($agent->getFirstname()) ?>
+                </a>
+            </td>
+            <td>
+
+                <a href="<?= $this->url('admin_agent', ['id' => $agent->getId()]) ?>">
+                    <?php
+                    $countries = [];
+                    foreach ($agent->getCountries() as $country) {
+                        $url = $this->url('country', ['id' => $country->getId(), 'slug' => $country->getSlug()]);
+                        $countries[] = <<< HTML
+                        <span><a href="$url">{$country->getNationalities()}</a></span>
+                        HTML;
+                    }
+                    ?>
+                    <?php if (!empty($agent->getCountries())): ?>
+                        <?= implode(' ', $countries) ?>
+                    <?php endif; ?>
+                </a>
+            </td>
+            <td></td>
+            <td>
                 <a href="<?= $this->url('admin_agent', ['id' => $agent->getId()]) ?>" class="btn btn-primary">
                     Modifier
                 </a>
                 <form action="<?= $this->url('admin_agent_delete', ['id' => $agent->getId()]) ?>" method="POST"
-                      onsubmit="return confirm ('Voulez-vous vraiment effectuer cette action ?')" style="display:inline">
+                      onsubmit="return confirm ('Voulez-vous vraiment effectuer cette action ?')"
+                      style="display:inline">
                     <button type="submit" class="btn btn-danger">supprimer</button>
                 </form>
             </td>

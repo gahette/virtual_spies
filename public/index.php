@@ -42,6 +42,7 @@ $router
     ->get('/', 'mission/index', 'missions')
     ->get('/country/[*:slug]-[i:id]', 'country/show', 'country')
     ->get('/mission/[*:slug]-[i:id]', 'mission/show', 'mission')
+    ->get('/agent/[*:slug]-[i:id]', 'agent/show', 'agent')
 
     ->post('/logout','auth/logout', 'logout')
 //    ADMIN

@@ -1,15 +1,15 @@
 <?php
 
 use App\Auth;
-use App\Controllers\MissionController;
+use App\Controllers\AgentController;
 use Database\DBConnection;
 
 Auth::check();
 
 $pdo = (new DBConnection)->getPDO();
-$missionController = new MissionController($pdo);
-$missionController->delete($params['id']);
-header('Location:' .$this->url('admin_missions') . '?delete=1');
+$agentController = new AgentController($pdo);
+$agentController->delete($params['id']);
+header('Location:' .$this->url('admin_agents') . '?delete=1');
 exit;
 
 

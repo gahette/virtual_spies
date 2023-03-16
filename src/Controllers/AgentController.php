@@ -6,12 +6,31 @@ use App\Controllers\Exception\NotCreateException;
 use App\Model\Agent;
 use App\PaginatedQuery;
 use Exception;
+use PDO;
 
 class AgentController extends Controller
 {
     protected $table = "agents";
     protected $class = Agent::class;
 
+    public function hydrateMissions(array $missions): void
+    {
+        $missionsByID = [];
+        foreach ($missions as $mission) {
+            $mission->setAgents([]);
+            $missionsByID[$mission->getId()] = $mission;
+        }
+        $agents = $this->pdo
+            ->query('SELECT a.*, am.mission_id
+FROM agent_mission am 
+JOIN agents a on a.id = am.agent_id
+WHERE am.mission_id IN (' . implode(',', array_keys($missionsByID)) . ')'
+            )->fetchAll(PDO::FETCH_CLASS, $this->class);
+
+        foreach ($agents as $agent) {
+            $missionsByID[$agent->getMissionId()]->addAgent($agent);
+        }
+    }
 
     /**
      * @param Agent $agent
@@ -93,5 +112,15 @@ WHERE country_id = $countryID"
         (new CountryController($this->pdo))->hydrateAgents($agents);
         return [$agents, $paginatedQuery];
     }
+    public function list(): array
+    {
+        $agents = $this->all();
+        $results = [];
+        foreach ($agents as $agent){
+            $results[$agent->getId()] = $agent->getLastname();
+        }
+        return $results;
+    }
+
 }
 // TODO :ORDER BY $this->table.created_at DESC à voir pour findPaginated()

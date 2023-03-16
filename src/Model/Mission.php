@@ -17,6 +17,9 @@ class Mission
     private $closed_at= "";
 
     private array $countries = [];
+    private array $agents = [];
+
+    private $agent;
 
     /**
      * @return ?int
@@ -186,5 +189,39 @@ class Mission
         $country->setMission($this);
     }
 
+    /**
+     * @return agent []
+     */
+    public function getAgents(): array
+    {
+        return $this->agents;
+    }
 
+    /**
+     * @param array $agents
+     */
+    public function setAgents(array $agents): void
+    {
+        $this->agents = $agents;
+    }
+
+    public function getAgentsIds(): array
+    {
+        $ids = [];
+        foreach($this->agents as $agent){
+            $ids[] = $agent->getId();
+        }
+        return $ids;
+    }
+    public function addAgent(Agent $agent): void
+    {
+        $this->agents[] = $agent;
+        $agent->setMission($this);
+    }
+
+    public function setAgent(Agent $agent): void
+    {
+        $this->agent = $agent;
+    }
 }
+

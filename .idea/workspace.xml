@@ -4,29 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="Add login and logout system">
-      <change afterPath="$PROJECT_DIR$/src/Controllers/AgentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Agent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/agent/_form.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/agent/delete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/agent/edit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/agent/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/admin/agent/new.php" afterDir="false" />
+    <list default="true" id="44ea6e24-de0c-46d7-8956-e98052254874" name="Changes" comment="Setting AgentController, Agent(Model), View admin/agent">
+      <change afterPath="$PROJECT_DIR$/src/Validators/AgentValidator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/agent/show.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bdd.sql" beforeDir="false" afterPath="$PROJECT_DIR$/bdd.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands/fill.php" beforeDir="false" afterPath="$PROJECT_DIR$/commands/fill.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/AgentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AgentController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controllers/CountryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CountryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Country.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Country.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/layouts/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/layouts/default.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/admin/mission/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/mission/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/auth/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/auth/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/MissionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/MissionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Agent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Agent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Mission.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Mission.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Validators/MissionValidator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Validators/MissionValidator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/agent/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/agent/_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/agent/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/agent/delete.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/agent/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/agent/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/agent/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/agent/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/agent/new.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/agent/new.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/mission/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/mission/_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/mission/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/mission/edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/admin/mission/new.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/admin/mission/new.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/mission/card.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/mission/card.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mission/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/mission/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mission/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/mission/show.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +169,7 @@
       <workItem from="1678796202947" duration="778000" />
       <workItem from="1678797361735" duration="21863000" />
       <workItem from="1678890050092" duration="781000" />
-      <workItem from="1678890843777" duration="7505000" />
+      <workItem from="1678890843777" duration="26415000" />
     </task>
     <task id="LOCAL-00001" summary="second commit">
       <created>1677679776074</created>
@@ -314,7 +311,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678714972416</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Setting AgentController, Agent(Model), View admin/agent">
+      <created>1678900074360</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1678900074360</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,7 +356,8 @@
     <MESSAGE value="refactoring and Add crud countries" />
     <MESSAGE value="Add listing countries into edit's and new's mission page" />
     <MESSAGE value="Add login and logout system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add login and logout system" />
+    <MESSAGE value="Setting AgentController, Agent(Model), View admin/agent" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setting AgentController, Agent(Model), View admin/agent" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

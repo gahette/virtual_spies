@@ -1,61 +1,62 @@
 <?php
 
 use App\Auth;
+use App\Controllers\AgentController;
 use App\Controllers\CountryController;
-use App\Controllers\MissionController;
 use App\HTML\Form;
 use App\ObjectHelper;
-use App\Validators\MissionValidator;
+
+use App\Validators\AgentValidator;
 use Database\DBConnection;
 
 Auth::check();
 
 $pdo = (new DBConnection)->getPDO();
-$missionController = new MissionController($pdo);
+$agentController = new AgentController($pdo);
 $countryController = new CountryController($pdo);
-$countries = $countryController->list();
-$mission = $missionController->find($params['id']);
-$countryController->hydrateMissions([$mission]);
+$countries = $countryController->listNationalities();
+$agent = $agentController->find($params['id']);
+$countryController->hydrateAgents([$agent]);
 $success = false;
 
 $errors = [];
 
 if (!empty($_POST)) {
-    $v = new MissionValidator($_POST, $missionController, $countries, $mission->getId());
+    $v = new AgentValidator($_POST, $agentController, $countries, $agent->getId());
 
-    ObjectHelper::hydrate($mission, $_POST, ['title', 'created_at', 'content', 'slug', 'nickname']);
+    ObjectHelper::hydrate($agent, $_POST, ['lastname', 'slug', 'firstname', 'bod']);
     if ($v->validate()) {
         $pdo->beginTransaction();
-        $missionController->updateMission($mission);
-        $missionController->attachCountries($mission->getId(), $_POST['countries_ids']);
+        $agentController->updateAgent($agent);
+        $agentController->attachCountries($agent->getId(), $_POST['countries_ids']);
         $pdo->commit();
-        $countryController->hydrateMissions([$mission]);
+        $countryController->hydrateAgents([$agent]);
         $success = true;
     } else {
         $errors = $v->errors();
     }
 }
-$form = new Form($mission, $errors);
+$form = new Form($agent, $errors);
 ?>
 <?php if ($success): ?>
     <div class="alert alert-success">
-        La mission a bien été modifié
+        L'agent a bien été modifié
     </div>
 <?php endif; ?>
 
 <?php if (isset($_GET['created'])): ?>
     <div class="alert alert-success">
-        La mission a bien été créé
+        L'agent a bien été créé
     </div>
 <?php endif; ?>
 
 <?php if (!empty($errors)): ?>
     <div class="alert alert-danger">
-        La mission n'a pas pu être modifié, merci de corriger vos erreurs
+        L'agent n'a pas pu être modifié, merci de corriger vos erreurs
     </div>
 <?php endif; ?>
 
-<h1>Éditer la mission <?= e($mission->getTitle()) ?></h1>
+<h1>Éditer un agent <?= e($agent->getLastname()) ?></h1>
 
 <?php require ('_form.php') ?>
 

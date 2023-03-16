@@ -13,6 +13,28 @@ foreach ($mission->getCountries() as $country) {
 </span>
 HTML;
 }
+
+
+$agents = [];
+foreach ($mission->getAgents() as $agent) {
+    $url = $this->url('agent', ['id' => $agent->getId(), 'slug' => $agent->getSlug()]);
+    $agents[] = <<< HTML
+<span class="badge bg-success">
+<a href="$url">{$agent->getLastname()}</a>
+</span>
+HTML;
+
+}
+
+//$query = $pdo->prepare('
+//SELECT a.id, a.slug, a.lastname
+//FROM agent_mission am
+//JOIN agents a on a.id = am.agent_id
+//WHERE am.mission_id = :id');
+//$query->execute(['id'=>$mission->getId()]);
+//$query->setFetchMode(PDO::FETCH_CLASS, \App\Model\Agent::class);
+//$agents = $query->fetchAll();
+
 ?>
 
 <div class="card mb-3">
@@ -25,6 +47,10 @@ HTML;
             <?php if (!empty($mission->getCountries())): ?>
                 <br>::<br>
                 <?= implode(' ', $countries) ?>
+            <?php endif; ?>
+            <?php if (!empty($mission->getAgents())): ?>
+                <br>::<br>
+                <?= implode(' ', $agents) ?>
             <?php endif; ?>
         </p>
         <p><?= $mission->getExcerpt() ?></p>

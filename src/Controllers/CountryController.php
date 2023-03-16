@@ -95,4 +95,14 @@ FROM $this->table",
         }
         return $results;
     }
+
+    public function listNationalities(): array
+    {
+        $countries = $this->all();
+        $results = [];
+        foreach ($countries as $country){
+            $results[$country->getId()] = $country->getNationalities();
+        }
+        return $results;
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Auth;
+use App\Controllers\AgentController;
 use App\Controllers\CountryController;
 use App\Controllers\MissionController;
 use App\HTML\Form;
@@ -13,23 +14,28 @@ Auth::check();
 $pdo = (new DBConnection)->getPDO();
 $missionController = new MissionController($pdo);
 $countryController = new CountryController($pdo);
+$agentController = new AgentController($pdo);
 $countries = $countryController->list();
+$agents = $agentController->list();
 $mission = $missionController->find($params['id']);
 $countryController->hydrateMissions([$mission]);
+$agentController->hydrateMissions([$mission]);
 $success = false;
 
 $errors = [];
 
 if (!empty($_POST)) {
-    $v = new MissionValidator($_POST, $missionController, $countries, $mission->getId());
+    $v = new MissionValidator($_POST, $missionController, $countries, $agents, $mission->getId());
 
     ObjectHelper::hydrate($mission, $_POST, ['title', 'created_at', 'content', 'slug', 'nickname']);
     if ($v->validate()) {
         $pdo->beginTransaction();
         $missionController->updateMission($mission);
         $missionController->attachCountries($mission->getId(), $_POST['countries_ids']);
+        $missionController->attachAgents($mission->getId(), $_POST['agents_ids']);
         $pdo->commit();
         $countryController->hydrateMissions([$mission]);
+        $agentController->hydrateMissions([$mission]);
         $success = true;
     } else {
         $errors = $v->errors();
@@ -57,5 +63,5 @@ $form = new Form($mission, $errors);
 
 <h1>Éditer la mission <?= e($mission->getTitle()) ?></h1>
 
-<?php require ('_form.php') ?>
+<?php require('_form.php') ?>
 

@@ -1,12 +1,12 @@
 <form action="" method="POST">
-    <?= $form->input('title', 'Titre'); ?>
-    <?= $form->input('created_at', 'Date de création'); ?>
+    <?= $form->input('lastname', 'Nom'); ?>
     <?= $form->input('slug', 'URL'); ?>
-    <?= $form->input('nickname', 'Nom de code'); ?>
-    <?= $form->select('countries_ids', 'Country', $countries); ?>
-    <?= $form->textarea('content', 'Description'); ?>
+    <?= $form->input('firstname', 'Prénom'); ?>
+    <?= $form->input('bod', 'Date de naissance'); ?>
+    <?= $form->select('countries_ids', 'Nationalité', $countries); ?>
+
     <button class="btn btn-primary mt-4">
-        <?php if ($mission->getId() !== null): ?>
+        <?php if ($agent->getId() !== null): ?>
             Modifier
         <?php else: ?>
             Créer
